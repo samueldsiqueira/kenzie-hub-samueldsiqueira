@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const GlobalStyle = styled.div`  
+export default GlobalStyle = styled.div`  
   root: {
     --primary-color: #FF577F;
     --secondary-color: ##FF427F;
@@ -14,7 +14,7 @@ export const GlobalStyle = styled.div`
     --color-gray-1: #868E96;
     --color-gray-0: #F8F9FA;
 
-    //toast collor
+    //toast color
 
     --color-toast-success: #3FE864;
     --color-toast-error: #E83F5B;
