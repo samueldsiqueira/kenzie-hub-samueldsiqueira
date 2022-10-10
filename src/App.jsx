@@ -1,10 +1,19 @@
+import { ToastContainer } from 'react-toastify';
 import { Routes } from './routes';
-import { useState } from 'react'
+import Global from './styles/global'
+
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
 
   return (
-    <Routes />
+    <>
+      <Global />
+      <ToastContainer position='top-right' autoClose={3000} />
+      <Routes />
+
+    </>
 
 
   )

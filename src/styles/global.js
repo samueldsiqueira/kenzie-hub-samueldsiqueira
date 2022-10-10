@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-export default GlobalStyle = styled.div`  
-  root: {
+export default createGlobalStyle`  
+  :root {
     --primary-color: #FF577F;
     --secondary-color: ##FF427F;
     --color-primary-negative: #59323F;
@@ -16,8 +16,8 @@ export default GlobalStyle = styled.div`
 
     //toast color
 
-    --color-toast-success: #3FE864;
-    --color-toast-error: #E83F5B;
+    --color-success: #3FE864;
+    --color-error: #E83F5B;
 
     //font
 
@@ -106,7 +106,7 @@ a {
 ul {
   list-style: none;
   }
-
+/* 
   button {
     font-family: var(--font-family);
     font-size: var(--font-size-md);
@@ -135,7 +135,7 @@ ul {
   button:disabled {
     background-color: var(--color-gray-1);
     cursor: not-allowed;
-  }
+  } */
 
   input {
     font-family: var(--font-family);
@@ -179,7 +179,8 @@ ul {
     padding: var(--spacing-2);
     transition: var(--transition);
   }
-  `
+  `;
+
 
 
 

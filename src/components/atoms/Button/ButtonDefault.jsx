@@ -1,13 +1,13 @@
-import { Button as StyledButton } from './style'
+import { BtnComponent } from './style'
 
 
-const ButtonDefault = ({ children, color, type, onclick }) => {
+const btnDefault = ({ bgColor, onclick, type, children }) => {
   return (
-    <StyledButton color={color} type={type} onClick={onclick}>{children}</StyledButton>
+    <BtnComponent bgColor={bgColor} type={type} onClick={onclick}>{children}</BtnComponent>
   )
 
 
 
 }
 
-export default Button
+export default btnDefault;
