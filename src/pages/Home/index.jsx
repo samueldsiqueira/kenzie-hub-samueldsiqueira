@@ -1,11 +1,10 @@
 // import { BtnComponent } from "../../components/atoms/Button/style";
 // import { useEffect, useState } from "react";
 // import apiGateway from "../../services/apiGateway";
-import { Link, useNavigate } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
 
 
-const Login = () => {
-  const navigate = useNavigate();
+const Home = () => {
 
 
   return (
@@ -15,7 +14,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Home;
 
 
 

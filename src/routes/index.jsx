@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Login } from '../pages/Login';
+import Home from '../pages/Home';
 // import { Register } from '../pages/Register/Register';
 // import { Dashboard } from '../pages/Dashboard/Dashboard'
 // import { notFound } from '../pages/NotFound/NotFound'
@@ -9,7 +9,9 @@ import { Login } from '../pages/Login';
 const RoutesMain = () => (
   <Routes>
 
-    <Route path='/' element={<Login />} />
+    <Route path='/' element={<Home />} >
+
+    </Route>
 
 
   </Routes >

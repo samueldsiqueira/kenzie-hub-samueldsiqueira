@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import { Routes } from './routes';
+import Routes from './routes';
 import Global from './styles/global'
 
 import 'react-toastify/dist/ReactToastify.css';
