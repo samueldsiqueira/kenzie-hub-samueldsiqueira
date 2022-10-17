@@ -14,6 +14,9 @@ export const RegisterContainer = styled.div`
 		width: 100%;
 		max-width: 500px;
 		justify-content: space-between;
+      h1{
+    color:var(--primary-color);
+  }
 		.btn-back {
 	background-color: var(--color-gray-2);
 	color: var(--color-gray-0);
@@ -30,4 +33,5 @@ export const RegisterContainer = styled.div`
   &:hover {
     filter: brightness(0.9);
     }
+
   }`;
