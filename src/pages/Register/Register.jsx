@@ -22,10 +22,10 @@ const schema = yup.object({
   password: yup
     .string()
     .min(6, "A senha deve conter no minimo 6 caracteres")
-    // .matches(
-    //   /^(?=.[A-Za-z])(?=.[0-9])(?=.*[!@#$%^&*])/,
-    //   "A senha deve conter caracteres especiais e numeros."
-    // )
+    .matches(
+      /^(?=.[A-Za-z])(?=.[0-9])(?=.*[!@#$%^&*])/,
+      "A senha deve conter caracteres especiais e numeros."
+    )
     .required("Campo obrigatório"),
   confirmPassword: yup
     .string()
