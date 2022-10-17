@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import { registerSchema } from '../../validators/schemas';
 
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AuthContext } from '../../contexts/AuthContext';
+// import { AuthContext } from '../../contexts/AuthContext';
 
 import Form from '../../components/Form/Form.js';
 import { BtnComponent } from '../../components/Button/style';
@@ -14,11 +14,7 @@ import { BtnComponent } from '../../components/Button/style';
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(registerSchema) });
 
-  const { registerUser } = useContext(AuthContext);
 
-  const onSubmitFunction = (data) => {
-    registerUser(data);
-  };
 
 
 
@@ -29,7 +25,7 @@ const Register = () => {
         <h1>Kenzie Hub</h1>
         <Link to='/'>Voltar</Link>
       </div>
-      <Form onSubmit={handleSubmit(onSubmitFunction)}>
+      <Form >
         <h2>Crie sua conta</h2>
         <span>Rapido e grátis, vamos nessa</span>
         <label htmlFor="name">Nome</label>

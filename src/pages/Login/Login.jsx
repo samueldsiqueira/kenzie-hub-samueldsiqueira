@@ -1,15 +1,20 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import { loginSchema } from '../../validators/schemas';
+import apiGateway from '../../services/apiGateway';
 
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { AuthContext } from '../../contexts/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
+// import { AuthContext } from '../../contexts/AuthContext';
 
 import Form from '../../components/Form/Form.js';
 import { BtnComponent } from '../../components/Button/style';
 import './style.css';
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
+
 
 const Login = () => {
   const {
@@ -18,18 +23,60 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginSchema) });
 
-  const { loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const toastSuccess = () => {
+    toast.success('Login efetuado com sucesso!', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
+  const toastError = () => {
+    toast.error('🦄 Email ou senha incorretos!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  }
+
 
   const onSubmitFunction = (data) => {
-    loginUser(data);
-  };
+    apiGateway.post('/sessions', data)
+      .then((response) => {
+        localStorage.setItem('@TOKEN', response.data.token);
+        toastSuccess()
+      },
+        setTimeout(() => {
+          navigate('/dashboard', { replace: true })
+
+        }, 3000)
+      )
+      .catch((error) => {
+        toastError()
+      })
+
+  }
+
+
+
 
 
   return (
     <>
       <h1 className='brand'> Kenzie Hub</h1>
 
-      <Form onSubmit={handleSubmit(loginUser)}>
+      <Form onSubmit={handleSubmit(onSubmitFunction)}>
         <h2>Login</h2>
         <label htmlFor='email'>Email</label>
         <input id='email' name='email' type='email' placeholder='E-mails' {...register('email')} />
