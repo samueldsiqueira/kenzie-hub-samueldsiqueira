@@ -75,6 +75,8 @@ export default createGlobalStyle`
     
   }
 
+
+
 *, *::after, *::before { margin:0;
     padding: 0;
     outline:0;
@@ -93,10 +95,7 @@ body {
   color: var(--color-gray-0);
   background-color: var(--color-gray-4);
   overflow-x: hidden;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+
   }
 
 ::-webkit-scrollbar {

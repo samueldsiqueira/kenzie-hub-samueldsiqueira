@@ -1,11 +1,28 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BtnComponent } from '../../components/Button/style';
+import apiGateway from '../../services/apiGateway';
 import { DashboardContainer } from './style';
 
-
 const Dashboard = () => {
+  const [user, setUser] = useState([])
+
   const navigate = useNavigate()
+
+  useEffect(() => {
+    apiGateway.get("/profile", {
+      headers: {
+        Authorization: `
+        Bearer ${localStorage.getItem("@TOKEN")} 
+      `
+      },
+    }).then((response) => {
+      setUser({
+        name: response.data.name,
+        course_module: response.data.course_module,
+      });
+    });
+  }, []);
 
   const logout = (e) => {
     e.preventDefault()
@@ -15,8 +32,8 @@ const Dashboard = () => {
   return (
     <DashboardContainer>
       <header>
-        <h1>Kenzie Hub</h1>
-        <BtnComponent onClick={logout} type='submit'>Sair</BtnComponent>
+        <h1 className='brand'>Kenzie Hub</h1>
+        <BtnComponent bgColor='grayDark' onClick={logout} type='submit'>Sair</BtnComponent>
       </header>
 
       <div className='horizontal-line'>
@@ -26,9 +43,9 @@ const Dashboard = () => {
 
       <section className='user-profile'>
         <h2>
-          Olá, capeta
+          Olá, {user.name}
         </h2>
-        <span>Primeiro módulo  (Introdução ao Frontend)</span>
+        <span>{user.course_module}</span>
       </section>
 
       <div className='horizontal-line'>

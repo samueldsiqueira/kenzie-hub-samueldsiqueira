@@ -31,6 +31,7 @@ const bgColorType = {
 
   grayDark: css`
     background-color: var(--color-gray-3);
+    color: var(--color-gray-0);
        &:hover {
       filter: brightness(80%);
     }

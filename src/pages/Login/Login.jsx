@@ -9,10 +9,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Form from '../../components/Form/Form.js';
 import { BtnComponent } from '../../components/Button/style';
-import './style.css';
+import './style.js';
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import { LoginContainer } from './style.js';
 
 
 
@@ -28,7 +29,7 @@ const Login = () => {
   const toastSuccess = () => {
     toast.success('Login efetuado com sucesso!', {
       position: "top-center",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
@@ -74,28 +75,31 @@ const Login = () => {
 
   return (
     <>
-      <h1 className='brand'> Kenzie Hub</h1>
+      <LoginContainer>
+        <h1 className='brand'> Kenzie Hub</h1>
 
-      <Form onSubmit={handleSubmit(onSubmitFunction)}>
-        <h2>Login</h2>
-        <label htmlFor='email'>Email</label>
-        <input id='email' name='email' type='email' placeholder='E-mails' {...register('email')} />
-        <p>{errors.email?.message}</p>
+        <Form onSubmit={handleSubmit(onSubmitFunction)}>
+          <h2>Login</h2>
+          <label htmlFor='email'>Email</label>
+          <input id='email' name='email' type='email' placeholder='E-mails' {...register('email')} />
+          <p>{errors.email?.message}</p>
 
-        <label htmlFor='password'>Senha</label>
-        <input id='password' name='password' type='password' placeholder='Senha' {...register('password')} />
-        <p>{errors.password?.password}</p>
+          <label htmlFor='password'>Senha</label>
+          <input id='password' name='password' type='password' placeholder='Senha' {...register('password')} />
+          <p>{errors.password?.password}</p>
 
-        <BtnComponent className='btn-large' type='submit'>
-          Entrar
-        </BtnComponent>
-        <div className='register-description'>
-          <p>Ainda não possui uma conta?</p>
-          <Link className='btn-large signin-button ' to='/register'>
-            Cadastre-se
-          </Link>
-        </div>
-      </Form>
+          <BtnComponent className='btn-large' type='submit'>
+            Entrar
+          </BtnComponent>
+          <div className='register-description'>
+            <p>Ainda não possui uma conta?</p>
+            <Link className='btn-large signin-button ' to='/register'>
+              Cadastre-se
+            </Link>
+          </div>
+        </Form>
+      </LoginContainer>
+
     </>
   );
 };

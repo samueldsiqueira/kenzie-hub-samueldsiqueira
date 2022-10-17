@@ -54,8 +54,8 @@ span{
     padding: 0 18px;
 
 
-    h1{
-      color:var(--color-primary);
+    .brand{ 
+      color:var(--primary-color);
     }
   } 
 
