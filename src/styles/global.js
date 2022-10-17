@@ -93,6 +93,10 @@ body {
   color: var(--color-gray-0);
   background-color: var(--color-gray-4);
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   }
 
 ::-webkit-scrollbar {
@@ -105,65 +109,6 @@ a {
 
 ul {
   list-style: none;
-  }
-/* 
-  button {
-    font-family: var(--font-family);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height);
-    color: var(--color-gray-0);
-    background-color: var(--color-gray-3);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: var(--transition);
-  }
-
-  button:hover {
-    background-color: var(--color-gray-2);
-  }
-
-  button:active {
-    background-color: var(--color-gray-1);
-  }
-
-  button:focus {
-    outline: none;
-  }
-
-  button:disabled {
-    background-color: var(--color-gray-1);
-    cursor: not-allowed;
-  } */
-
-  input {
-    font-family: var(--font-family);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height);
-    color: var(--color-gray-0);
-
-    background-color: var(--color-gray-3);
-    border: none; 
-    border-radius: var(--border-radius);
-    padding: var(--spacing-2);
-    transition: var(--transition);
-  }
-
-  input:focus {
-    outline: none;
-    border: 1px solid var(--color-gray-0);
-    color: var(--color-gray-0);
-  }
-
-  input::placeholder {
-      color: var(--color-gray-0);
-  }
-
-  input:disabled {
-    background-color: var(--color-gray-1);
-    cursor: not-allowed;
   }
 
   textarea {

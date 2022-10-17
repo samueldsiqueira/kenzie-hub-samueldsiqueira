@@ -1,0 +1,6 @@
+.brand {
+  text-align: center;
+  color: var(--primary-color);
+  font-weight: 900;
+  margin-bottom: 1rem;
+}

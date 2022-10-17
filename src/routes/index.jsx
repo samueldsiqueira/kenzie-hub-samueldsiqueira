@@ -1,20 +1,16 @@
-import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home';
-// import { Register } from '../pages/Register/Register';
-// import { Dashboard } from '../pages/Dashboard/Dashboard'
-// import { notFound } from '../pages/NotFound/NotFound'
-
+import Login from '../pages/Login';
+import Register from '../pages/Register/Register';
+import Dashboard from '../pages/Dashboard';
+import NotFound from '../pages/NotFound/NotFound';
 
 const RoutesMain = () => (
-  <Routes>
-
-    <Route path='/' element={<Home />} >
-
-    </Route>
-
-
-  </Routes >
+	<Routes>
+		<Route path='/dashboard' element={<Dashboard />}></Route>
+		<Route path='/' element={<Login />}></Route>
+		<Route path='/register' element={<Register />}></Route>
+		<Route path='/*' element={<NotFound />}></Route>
+	</Routes>
 );
 
 export default RoutesMain;
