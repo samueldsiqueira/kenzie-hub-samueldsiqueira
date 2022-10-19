@@ -39,7 +39,6 @@ span{
   display: flex;
   flex-direction: column;
   width: 100%;
-  height:150px;
   gap:1rem;
   max-width: 1200px;
   padding: 0 18px;

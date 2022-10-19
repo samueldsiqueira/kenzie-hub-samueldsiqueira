@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { BtnComponent } from '../../components/Button/style';
+import TechList from '../../components/TechList/TechList';
 import { AuthContext } from '../../contexts/AuthContext';
 import { DashboardContainer } from './style';
 
@@ -39,8 +40,16 @@ const Dashboard = () => {
           </div>
 
           <section className='user-tech'>
-            <h2>Que pena! Estamos em desenvolvimento :(</h2>
-            <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+
+            <div className='user-profile'>
+              <h2>Tecnologias</h2>
+              <button>+</button>
+            </div>
+
+            <TechList />
+
+
+
           </section>
 
         </DashboardContainer>
