@@ -6,61 +6,48 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { DashboardContainer } from './style';
 
 const Dashboard = () => {
+	const { logout, user, loading } = useContext(AuthContext);
 
-  const { logout, user, loading } = useContext(AuthContext)
-  console.log(user)
+	if (loading) {
+		return <p>Carregando...</p>;
+	}
 
-  if (loading) {
-    return <p>Carregando...</p>
-  }
+	return (
+		<>
+			{user ? (
+				<DashboardContainer>
+					<header>
+						<h1 className='brand'>Kenzie Hub</h1>
+						<BtnComponent bgColor='grayDark' onClick={logout} type='submit'>
+							Sair
+						</BtnComponent>
+					</header>
 
-  return (
-    <>
-      {user ? (
-        <DashboardContainer>
-          <header>
-            <h1 className='brand'>Kenzie Hub</h1>
-            <BtnComponent bgColor='grayDark' onClick={logout} type='submit'>Sair</BtnComponent>
-          </header>
+					<div className='horizontal-line'></div>
 
-          <div className='horizontal-line'>
+					<section className='user-profile'>
+						<h2>Olá, {user.name}</h2>
+						<span>{user.course_module}</span>
+					</section>
 
-          </div>
+					<div className='horizontal-line'></div>
 
+					<section className='user-tech'>
+						<div className='user-profile'>
+							<h2>Tecnologias</h2>
+							<BtnComponent className='btn-add' bgColor='grayDark' type='submit'>
+								+
+							</BtnComponent>
+						</div>
 
-          <section className='user-profile'>
-            <h2>
-              Olá, {user.name}
-            </h2>
-            <span>{user.course_module}</span>
-          </section>
-
-          <div className='horizontal-line'>
-
-          </div>
-
-          <section className='user-tech'>
-
-            <div className='user-profile'>
-              <h2>Tecnologias</h2>
-              <button>+</button>
-            </div>
-
-            <TechList />
-
-
-
-          </section>
-
-        </DashboardContainer>
-
-      ) :
-        <Navigate to={'/'} replace />
-
-      }
-    </>
-  )
-
+						<TechList />
+					</section>
+				</DashboardContainer>
+			) : (
+				<Navigate to={'/'} replace />
+			)}
+		</>
+	);
 };
 
 export default Dashboard;

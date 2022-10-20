@@ -26,7 +26,11 @@ width: 100vw;
     font-size: var(--font-size-lg);
     color: var(--color-gray-0);
     font-weight: 700;
-}  
+} 
+.btn-add {
+  font-size:2rem;
+  font-weight:300;
+}
 span{
     font-size: var(--font-size-md);
     color: var(--color-gray-0);

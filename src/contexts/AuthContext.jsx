@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -61,7 +62,7 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  function logout(e) {
+  const logout = (e) => {
     e.preventDefault();
     localStorage.clear();
     setLoading(false);

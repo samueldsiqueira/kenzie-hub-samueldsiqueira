@@ -12,14 +12,16 @@ export const ThechListContainer = styled.ul`
   background-color: #212529;
   gap: 1rem;
   li{
+    
     background-color: rgba(18, 18, 20, 1);
-    width: 94%;
+    margin: 1.2rem 0;
+    width: 90%;
     display: flex;
     align-items: center;
-    height: 3rem;
+    height: 4rem;
     border-radius: 0.5rem;
     padding: 0 18px;
-  justify-content: space-between;
+    justify-content: space-between;
 
   }
 `;
