@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
-
 import { loginSchema } from '../../validators/schemas';
 import Form from '../../components/Form/Form.js';
 import { BtnComponent } from '../../components/Button/style';
@@ -16,6 +15,8 @@ import { LoginContainer } from './style.js';
 
 
 const Login = () => {
+
+
 
   const { onSubmitFunction } = useContext(AuthContext)
 

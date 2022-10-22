@@ -26,7 +26,9 @@ const AuthProvider = ({ children }) => {
 
           const { data } = await apiGateway.get('/profile');
 
+
           setUser(data);
+          console.log(user)
 
         } catch (error) {
           console.error(error);

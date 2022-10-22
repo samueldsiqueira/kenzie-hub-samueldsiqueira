@@ -1,9 +1,11 @@
 import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
 import { BtnComponent } from '../../components/Button/style';
+import Form from '../../components/Form/Form';
 import TechList from '../../components/TechList/TechList';
 import { AuthContext } from '../../contexts/AuthContext';
 import { DashboardContainer } from './style';
+import Modal from 'react-modal';
+import ModalContainer from '../../components/ModalContainer/ModalContainer';
 
 const Dashboard = () => {
 	const { logout, user, loading } = useContext(AuthContext);
@@ -39,13 +41,13 @@ const Dashboard = () => {
 								+
 							</BtnComponent>
 						</div>
-
 						<TechList />
 					</section>
+          <ModalContainer />
 				</DashboardContainer>
 			) : (
-				<Navigate to={'/'} replace />
-			)}
+        <Navigate to={'/'} replace />
+        )}
 		</>
 	);
 };

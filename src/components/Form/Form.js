@@ -10,13 +10,13 @@ const Form = styled.form`
 	background-color: var(--color-gray-3);
 	margin: 0 auto;
 	gap: 0.5rem;
-	padding: 20px;
+	padding: 20px 1rem;
 	border-radius: 5px;
 	label {
-		width: 90%;
+		width: 100%;
 	}
 	.btn-large {
-		width: 90%;
+		width: 100%;
 	}
 
     input {
@@ -27,7 +27,7 @@ const Form = styled.form`
     color: var(--color-gray-0);
     background-color: var(--color-gray-2);
     border: 1px solid transparent;
-    width: 90%;
+    width: 100%;
     border-radius: var(--border-radius);
     padding: var(--spacing-2);
     transition: var(--transition);
@@ -55,7 +55,7 @@ const Form = styled.form`
   }
 
 select{
-    width: 90%;
+    width: 100%;
     padding: var(--spacing-2);
     color: var(--color-gray-0);
     background-color: var(--color-gray-2);

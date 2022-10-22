@@ -61,6 +61,7 @@ export const BtnComponent = styled.button`
   padding: 0 32px;
   margin: 0.5rem 0;
   border: 0;
+  /* width: 100%; */
   height: 48px;
   transition: filter 0.2s;
   border-radius: 5px;

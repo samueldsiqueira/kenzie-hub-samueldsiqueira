@@ -14,7 +14,14 @@ const TechProvider = ({ children }) => {
 	const showModal = (tech) => {
 		setRefreshList(true);
 		setTechSelected(tech);
-	};
+  };
+
+
+  
+  const hideModal = () => {
+    setRefreshList(false);
+    setTechSelected({});
+  };
 
 	useEffect(() => {
 		const loadTechs = async () => {
@@ -33,7 +40,26 @@ const TechProvider = ({ children }) => {
 		};
 
 		loadTechs();
-	}, []);
+  }, []);
+  
+  const addTech = async (tech) => {
+    try {
+      const { data } = await apiGateway.post('users/techs', tech);
+      setTechs([...techs, data]);
+      setModalAdd(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteTech = async (id) => {
+    try {
+      await apiGateway.delete(`users/techs/${id}`);
+      setTechs(techs.filter((tech) => tech.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 	const createTech = async (tech) => {
 		try {
@@ -58,15 +84,7 @@ const TechProvider = ({ children }) => {
 		setRefreshList(false);
 	};
 
-	const deleteTech = async (tech) => {
-		try {
-			await apiGateway.delete(`users/techs/${tech.id}`);
-			const newTechs = techs.filter((t) => t.id !== tech.id);
-			setTechs(newTechs);
-		} catch (error) {
-			console.error(error);
-		}
-	};
+
 
 	return (
 		<TechContext.Provider

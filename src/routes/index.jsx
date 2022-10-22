@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../pages/Dashboard/Dashboard';
 import NotFound from '../pages/NotFound/NotFound';
 
 const RoutesMain = () => (
