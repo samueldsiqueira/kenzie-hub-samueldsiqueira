@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+
 import { BtnComponent } from '../../components/Button/style';
 import Form from '../../components/Form/Form';
 import TechList from '../../components/TechList/TechList';
@@ -8,7 +9,20 @@ import Modal from 'react-modal';
 import ModalContainer from '../../components/ModalContainer/ModalContainer';
 
 const Dashboard = () => {
-	const { logout, user, loading } = useContext(AuthContext);
+  const [modal, setModal] = useState(false)
+  const { logout, user, loading } = useContext(AuthContext);
+  
+  const showModal = () => {
+    console.log('abriu modal')
+    setModal(true)
+  }
+
+  const hideModal = () => {
+    console.log('fechou modal')
+
+    setModal(false)
+  }
+
 
 	if (loading) {
 		return <p>Carregando...</p>;
@@ -37,13 +51,16 @@ const Dashboard = () => {
 					<section className='user-tech'>
 						<div className='user-profile'>
 							<h2>Tecnologias</h2>
-							<BtnComponent className='btn-add' bgColor='grayDark' type='submit'>
+							<BtnComponent onClick={showModal} className='btn-add' bgColor='grayDark' type='submit'>
 								+
 							</BtnComponent>
 						</div>
 						<TechList />
-					</section>
-          <ModalContainer />
+          </section>
+          {modal ?
+            <ModalContainer hideModal={hideModal} /> :
+            <></>
+          }
 				</DashboardContainer>
 			) : (
         <Navigate to={'/'} replace />
