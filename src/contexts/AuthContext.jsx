@@ -10,8 +10,10 @@ export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
 
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [ techs, setTechs] = useState([])
 
 
   const navigate = useNavigate();
@@ -38,6 +40,8 @@ const AuthProvider = ({ children }) => {
     };
     loadUser();
   }, [loading]);
+
+
 
   const toastSuccess = () => {
     toast.success('Login efetuado com sucesso!', {

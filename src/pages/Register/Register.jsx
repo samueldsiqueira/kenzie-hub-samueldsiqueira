@@ -19,14 +19,14 @@ const schema = yup.object({
     .string()
     .email("Deve ser um e-mail válido")
     .required("Campo obrigatório"),
-  password: yup
-    .string()
-    .min(6, "A senha deve conter no minimo 6 caracteres")
-    .matches(
-      /^(?=.[A-Za-z])(?=.[0-9])(?=.*[!@#$%^&*])/,
-      "A senha deve conter caracteres especiais e numeros."
-    )
-    .required("Campo obrigatório"),
+  // password: yup
+  //   .string()
+  //   .min(6, "A senha deve conter no minimo 6 caracteres")
+  //   .matches(
+  //     /^(?=.[A-Za-z])(?=.[0-9])(?=.*[!@#$%^&*])/,
+  //     "A senha deve conter caracteres especiais e numeros."
+  //   )
+  //   .required("Campo obrigatório"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password")], "A senha deve ser igual"),
@@ -60,18 +60,18 @@ const Register = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitFunction = (data) => {
-    console.log(data)
-    console.log(errors)
-    apiGateway.post("/users", data)
-      .then(
-        (response) => console.log(response.data),
-        toastSuccess(),
-        setTimeout(() => {
-          navigate("/");
-        }, 2000)
-      )
-      .catch((err) => console.log(err));
+  const onSubmitFunction = async (data) => {
+try {
+	    const response = await apiGateway.post("/users", data)
+	       	        toastSuccess(),
+	        setTimeout(() => {
+	          navigate("/");
+	        }, 2000)
+	      
+} catch (error) {
+  console.error(error)
+	
+}
   }
 
   return (
