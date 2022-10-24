@@ -1,28 +1,16 @@
 import { useContext, useState } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 import { BtnComponent } from '../../components/Button/style';
-import Form from '../../components/Form/Form';
 import TechList from '../../components/TechList/TechList';
-import { AuthContext } from '../../contexts/AuthContext';
 import { DashboardContainer } from './style';
-import Modal from 'react-modal';
 import ModalContainer from '../../components/ModalContainer/ModalContainer';
+import { TechContext } from '../../contexts/TechContext';
+import { Navigate } from 'react-router-dom';
 
 const Dashboard = () => {
-  const [modal, setModal] = useState(false)
-  const { logout, user, loading } = useContext(AuthContext);
-  
-  const showModal = () => {
-    console.log('abriu modal')
-    setModal(true)
-  }
-
-  const hideModal = () => {
-    console.log('fechou modal')
-
-    setModal(false)
-  }
-
+	const { logout, user, loading } = useContext(AuthContext);
+	const { modal, showModal, techs, deleteTech } = useContext(TechContext);
 
 	if (loading) {
 		return <p>Carregando...</p>;
@@ -55,16 +43,18 @@ const Dashboard = () => {
 								+
 							</BtnComponent>
 						</div>
-						<TechList />
-          </section>
-          {modal ?
-            <ModalContainer hideModal={hideModal} /> :
-            <></>
-          }
+						<ul>
+							{techs
+								? techs.map((item) => <TechList key={item.title} title={item.title} id={item.id} status={item.status} />)
+								: null}
+						</ul>
+					</section>
+
+					{modal ? <ModalContainer /> : null}
 				</DashboardContainer>
 			) : (
-        <Navigate to={'/'} replace />
-        )}
+				<Navigate to={'/'} replace />
+			)}
 		</>
 	);
 };

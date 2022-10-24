@@ -4,39 +4,21 @@ import { ContainerModal } from './styled';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import apiGateway from '../../services/apiGateway';
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useContext } from 'react';
+import { TechContext } from '../../contexts/TechContext';
 
 const techSchema = yup.object({
 	status: yup.string().required('ta errado acerta essa porra'),
 });
 
-const ModalContainer = ({ hideModal }) => {
-	const { user } = useContext(AuthContext);
+const ModalContainer = () => {
+	const { modal, handleTechs, hideModal } = useContext(TechContext);
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm({ resolver: yupResolver(techSchema) });
-
-	const handleTechs = async (data) => {
-		console.log(user);
-		console.log(data);
-		const token = localStorage.getItem('@hubi:token');
-		try {
-			apiGateway.defaults.headers.authorization = `Bearer ${token}`;
-			const response = await apiGateway.post('/users/techs', data);
-			toastSuccess(), console.log(response);
-		} catch (error) {
-			console.log(error);
-			console.error(error);
-		}
-
-		apiGateway.post('/users/techs');
-	};
 
 	return (
 		<ContainerModal>

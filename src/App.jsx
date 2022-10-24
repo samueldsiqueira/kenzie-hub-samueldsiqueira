@@ -3,6 +3,7 @@ import Global from './styles/global';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthProvider from './contexts/AuthContext';
+import TechProvider from './contexts/TechContext';
 
 function App() {
 	return (
@@ -11,7 +12,9 @@ function App() {
 			<ToastContainer />
 
 			<AuthProvider>
-				<Routes />
+				<TechProvider>
+					<Routes />
+				</TechProvider>
 			</AuthProvider>
 		</>
 	);
