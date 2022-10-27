@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { loginSchema } from '../../validators/schemas';
-import Form from '../../components/Form/Form.ts';
+import Form from '../../styles/Form/Form.ts';
 import { BtnComponent } from '../../components/Button/style';
 import './style.js';
 

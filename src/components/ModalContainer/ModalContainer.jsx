@@ -1,5 +1,5 @@
 import { BtnComponent } from '../Button/style';
-import Form from '../Form/Form';
+import Form from '../../styles/Form/Form';
 import { ContainerModal } from './styled';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
