@@ -1,5 +1,9 @@
 import styled, { css } from 'styled-components'
 
+interface iButtonProps{
+  bgColor: string;
+
+  }
 
 const bgColorType = {
   primary: css`
@@ -55,8 +59,8 @@ const bgColorType = {
     } `,
 };
 
-export const BtnComponent = styled.button`
-  ${({ bgColor }) => bgColorType[bgColor || 'primary']}
+export const BtnComponent = styled.button<iButtonProps>`
+  ${({ bgColor }:iButtonProps) => bgColorType[bgColor || 'primary']}
   font-size: var(--font-size-lg);
   padding: 0 32px;
   margin: 0.5rem 0;
