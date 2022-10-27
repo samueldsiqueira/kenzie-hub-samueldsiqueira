@@ -1,25 +1,19 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import { BtnComponent } from './style'
 
-interface IbuttonPops extends ButtonHTMLAttributes<HTMLInputElement>{
-  bgColor?: string;
-  children: string;
-  onclick: any;
-}
+interface IbuttonPops extends ButtonHTMLAttributes<HTMLButtonElement>{
+  backgroundColor: string;
+  children: ReactNode;
+  }
 
-const btnDefault = ({
-  bgColor,
-  onclick,
-  type,
+const btnDefault: React.FC<IbuttonPops> = ({
+  backgroundColor,
   children,
   ...rest
-}:IbuttonPops) => {
+}) => {
   return (
-    <BtnComponent bgColor={bgColor} type={type} onClick={onclick}>{children}</BtnComponent>
+    <BtnComponent backgroundColor={backgroundColor} > {children} </BtnComponent>
   )
-
-
-
 }
 
 export default btnDefault;

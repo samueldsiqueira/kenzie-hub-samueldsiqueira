@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import apiGateway from '../../services/apiGateway';
-import Form from '../../components/Form/Form.js';
+import Form from '../../components/Form/Form.ts';
 import { BtnComponent } from '../../components/Button/style';
 import { RegisterContainer } from './styled';
 
