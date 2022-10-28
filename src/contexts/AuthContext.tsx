@@ -1,14 +1,33 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiGateway from '../services/apiGateway';
 import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.min.css';
+import { string } from 'yup';
+
+export interface IData {
+	data: ReactNode;
+}
+
+export interface AutthProvidesProps {
+	children: ReactNode;
+}
+
+export interface AuthContext {
+	onSubmitFunction(data: IUser);
+	toastError: any;
+	toastSuccess: any;
+	logout: any;
+	user: any;
+	loading: any;
+	setLoading: any;
+}
 
 export const AuthContext = createContext({});
 
-const AuthProvider = ({ children }) => {
-	const [user, setUser] = useState(null);
+const AuthProvider = ({ children }: AutthProvidesProps) => {
+	const [user, setUser] = useState<IUser[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [techs, setTechs] = useState([]);
 
@@ -33,6 +52,29 @@ const AuthProvider = ({ children }) => {
 		loadUser();
 	}, [loading]);
 
+	const logout = (e: any) => {
+		e.preventDefault();
+		localStorage.clear();
+		setLoading(false);
+		navigate('/');
+	};
+
+	const onSubmitFunction = async (data: IUser) => {
+		try {
+			const response = await apiGateway.post('/sessions', data);
+
+			const { token, user } = response.data;
+
+			localStorage.setItem('@hubi:token', token);
+
+			setUser(user);
+			toastSuccess();
+
+			navigate('/dashboard');
+		} catch (error) {
+			toastError();
+		}
+	};
 	const toastSuccess = () => {
 		toast.success('Login efetuado com sucesso!', {
 			position: 'top-center',
@@ -56,30 +98,6 @@ const AuthProvider = ({ children }) => {
 			progress: undefined,
 			theme: 'dark',
 		});
-	};
-
-	const logout = (e) => {
-		e.preventDefault();
-		localStorage.clear();
-		setLoading(false);
-		navigate('/');
-	};
-
-	const onSubmitFunction = async (data) => {
-		try {
-			const response = await apiGateway.post('/sessions', data);
-
-			const { token, user } = response.data;
-
-			localStorage.setItem('@hubi:token', token);
-
-			setUser(user);
-			toastSuccess();
-
-			navigate('/dashboard');
-		} catch (error) {
-			toastError();
-		}
 	};
 
 	return (

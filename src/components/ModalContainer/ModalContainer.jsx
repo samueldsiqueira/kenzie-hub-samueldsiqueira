@@ -7,9 +7,13 @@ import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { TechContext } from '../../contexts/TechContext';
 
+
+
 const techSchema = yup.object({
 	status: yup.string().required('ta errado acerta essa porra'),
 });
+
+
 
 const ModalContainer = () => {
 	const { modal, handleTechs, hideModal } = useContext(TechContext);
