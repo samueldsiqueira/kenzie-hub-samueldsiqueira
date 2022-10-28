@@ -1,21 +1,19 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
+import { RootObject } from '../interfaces';
 import { useNavigate } from 'react-router-dom';
 import apiGateway from '../services/apiGateway';
 import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.min.css';
-import { string } from 'yup';
 
-export interface IData {
-	data: ReactNode;
-}
+import { string } from 'yup';
 
 export interface AutthProvidesProps {
 	children: ReactNode;
 }
 
 export interface AuthContext {
-	onSubmitFunction(data: IUser);
+	onSubmitFunction(data: RootObject): void;
 	toastError: any;
 	toastSuccess: any;
 	logout: any;
@@ -27,7 +25,7 @@ export interface AuthContext {
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }: AutthProvidesProps) => {
-	const [user, setUser] = useState<IUser[]>([]);
+	const [user, setUser] = useState<RootObject[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [techs, setTechs] = useState([]);
 
@@ -59,7 +57,7 @@ const AuthProvider = ({ children }: AutthProvidesProps) => {
 		navigate('/');
 	};
 
-	const onSubmitFunction = async (data: IUser) => {
+	const onSubmitFunction = async (data: RootObject) => {
 		try {
 			const response = await apiGateway.post('/sessions', data);
 
