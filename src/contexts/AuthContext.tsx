@@ -8,26 +8,24 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import { string } from 'yup';
 
-export interface AutthProvidesProps {
+export interface AuthProviderProps {
 	children: ReactNode;
 }
 
-export interface AuthContext {
-	onSubmitFunction(data: RootObject): void;
-	toastError: any;
-	toastSuccess: any;
-	logout: any;
-	user: any;
-	loading: any;
-	setLoading: any;
+export interface IAuthContext {
+	onSubmitFunction: (data: RootObject) => Promise<void>;
+	toastError(): void;
+	toastSuccess(): void;
+	logout: (e: React.SyntheticEvent) => void;
+	user: RootObject | undefined;
+	loading: boolean;
 }
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext({} as IAuthContext);
 
-const AuthProvider = ({ children }: AutthProvidesProps) => {
-	const [user, setUser] = useState<RootObject[]>([]);
-	const [loading, setLoading] = useState(true);
-	const [techs, setTechs] = useState([]);
+const AuthProvider = ({ children }: AuthProviderProps) => {
+	const [user, setUser] = useState<RootObject>();
+	const [loading, setLoading] = useState<boolean>(true);
 
 	const navigate = useNavigate();
 
@@ -50,7 +48,7 @@ const AuthProvider = ({ children }: AutthProvidesProps) => {
 		loadUser();
 	}, [loading]);
 
-	const logout = (e: any) => {
+	const logout = (e: React.SyntheticEvent) => {
 		e.preventDefault();
 		localStorage.clear();
 		setLoading(false);
@@ -99,7 +97,7 @@ const AuthProvider = ({ children }: AutthProvidesProps) => {
 	};
 
 	return (
-		<AuthContext.Provider value={{ onSubmitFunction, toastError, toastSuccess, logout, user, loading, setLoading }}>
+		<AuthContext.Provider value={{ onSubmitFunction, toastError, toastSuccess, logout, user, loading }}>
 			{children}
 		</AuthContext.Provider>
 	);

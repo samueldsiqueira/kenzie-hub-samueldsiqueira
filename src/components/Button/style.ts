@@ -4,66 +4,6 @@ interface iButtonProps {
 	backgroundColor: string;
 }
 
-
-
-// const bgColorType:any = {
-// 	primary: css`
-// 		background-color: var(--primary-color);
-// 		&:hover {
-// 			filter: brightness(0.9);
-// 		}
-// 	`,
-// 	secondary: css`
-// 		background-color: var(--secondary-color);
-// 		&:hover {
-// 			filter: brightness(0.9);
-// 		}
-// 	`,
-
-// 	gray: css`
-// 		background-color: var(--color-gray-2);
-// 		&:hover {
-// 			filter: brightness(0.9);
-// 		}
-// 	`,
-
-// 	grayLight: css`
-// 		background-color: var(--color-gray-1);
-// 		&:hover {
-// 			filter: brightness(0.9);
-// 		}
-// 	`,
-
-// 	grayDark: css`
-// 		background-color: var(--color-gray-3);
-// 		color: var(--color-gray-0);
-// 		&:hover {
-// 			filter: brightness(80%);
-// 		}
-// 	`,
-
-// 	black: css`
-// 		background-color: var(--color-black);
-// 		&:hover {
-// 			filter: brightness(0.9);
-// 		}
-// 	`,
-
-// 	error: css`
-// 		background-color: var(--color-error);
-// 		&:hover {
-// 			filter: brightness(0.9);
-// 		}
-// 	`,
-
-// 	success: css`
-// 		background-color: var(--color-success);
-// 		&:hover {
-// 			filter: brightness(0.9);
-// 		}
-// 	`,
-// };
-
 export const BtnComponent = styled.button<iButtonProps>`
 	font-size: var(--font-size-lg);
 	padding: 0 32px;
@@ -73,7 +13,7 @@ export const BtnComponent = styled.button<iButtonProps>`
 	transition: filter 0.2s;
 	border-radius: 5px;
 
-  background-color: ${(props)=> props.backgroundColor || 'var(--primary-color)'};
+	background-color: ${(props) => props.backgroundColor || 'var(--primary-color)'};
 
 	&:hover {
 		filter: brightness(0.9);

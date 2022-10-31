@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { Key, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 
 import { BtnComponent } from '../../components/Button/style';
@@ -7,12 +7,13 @@ import { DashboardContainer } from './style';
 import ModalContainer from '../../components/ModalContainer/ModalContainer';
 import { TechContext } from '../../contexts/TechContext';
 import { Navigate } from 'react-router-dom';
+import { ITechsUser } from '../../interfaces/IThechs';
 
 const Dashboard = () => {
 	const { logout, user, loading } = useContext(AuthContext);
-	const { modal, showModal, techs, deleteTech } = useContext(TechContext);
+	const { modal, showModal, techs, deleteTech, refreshList } = useContext(TechContext);
 
-	if (loading) {
+	if (loading || refreshList) {
 		return <p>Carregando...</p>;
 	}
 
@@ -22,7 +23,7 @@ const Dashboard = () => {
 				<DashboardContainer>
 					<header>
 						<h1 className='brand'>Kenzie Hub</h1>
-						<BtnComponent bgColor='grayDark' onClick={logout} type='submit'>
+						<BtnComponent backgroundColor='--color-gray-3' onClick={logout} type='submit'>
 							Sair
 						</BtnComponent>
 					</header>
@@ -39,13 +40,15 @@ const Dashboard = () => {
 					<section className='user-tech'>
 						<div className='user-profile'>
 							<h2>Tecnologias</h2>
-							<BtnComponent onClick={showModal} className='btn-add' bgColor='grayDark' type='submit'>
+							<BtnComponent onClick={showModal} className='btn-add' backgroundColor='--color-gray-3' type='submit'>
 								+
 							</BtnComponent>
 						</div>
 						<ul>
 							{techs
-								? techs.map((item) => <TechList key={item.title} title={item.title} id={item.id} status={item.status} />)
+								? techs.map((item: ITechsUser) => (
+										<TechList key={item.title} title={item.title} id={item.id} status={item.status} />
+								  ))
 								: null}
 						</ul>
 					</section>

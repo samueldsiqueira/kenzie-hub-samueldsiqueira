@@ -1,4 +1,4 @@
-import { ITech } from './IThechs';
+import { ITech, ITechsUser } from './IThechs';
 import { IWork } from './IWorks';
 
 export interface RootObject {
@@ -8,9 +8,9 @@ export interface RootObject {
 	course_module: string;
 	bio: string;
 	contact: string;
-	techs: [ITech];
+	techs: [ITechsUser];
 	works: [IWork];
-	created_at: Date;
-	updated_at: Date;
+	created_at: string;
+	updated_at: string;
 	avatar_url: string;
 }
