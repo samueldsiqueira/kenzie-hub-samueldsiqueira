@@ -5,12 +5,12 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import NotFound from '../pages/NotFound/NotFound';
 
 const RoutesMain = () => (
-  <Routes>
-    <Route path='/dashboard' element={<Dashboard />}></Route>
-    <Route path='/' element={<Login />}></Route>
-    <Route path='/register' element={<Register />}></Route>
-    <Route path='/*' element={<NotFound />}></Route>
-  </Routes>
+	<Routes>
+		<Route path='/dashboard' element={<Dashboard />}></Route>
+		<Route path='/' element={<Login />}></Route>
+		<Route path='/register' element={<Register />}></Route>
+		<Route path='/*' element={<NotFound />}></Route>
+	</Routes>
 );
 
 export default RoutesMain;

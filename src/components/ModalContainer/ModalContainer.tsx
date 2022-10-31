@@ -7,13 +7,15 @@ import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { TechContext } from '../../contexts/TechContext';
 
-
+interface IForm {
+	title: string;
+	status: string;
+	id: string;
+}
 
 const techSchema = yup.object({
 	status: yup.string().required('ta errado acerta essa porra'),
 });
-
-
 
 const ModalContainer = () => {
 	const { modal, handleTechs, hideModal } = useContext(TechContext);
@@ -22,7 +24,7 @@ const ModalContainer = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({ resolver: yupResolver(techSchema) });
+	} = useForm<IForm>({ resolver: yupResolver(techSchema) });
 
 	return (
 		<ContainerModal>
@@ -38,15 +40,17 @@ const ModalContainer = () => {
 				</div>
 				<Form onSubmit={handleSubmit(handleTechs)}>
 					<label htmlFor='title'>Título</label>
-					<input id='title' name='title' type='text' placeholder='Título' {...register('title')} />
-					<p>{errors.title?.title}</p>
+					<input id='title' type='text' placeholder='Título' {...register('title')} />
+					<p>{errors.title?.message}</p>
 					<label htmlFor='status'>Selecionar Status</label>
-					<select name='status' {...register('status')}>
+					<select {...register('status')}>
 						<option value='iniciante'>Iniciante</option>
 						<option value='intermediário'>Intermediário</option>
 						<option value='avançado'>Avançado</option>
 					</select>
-					<BtnComponent type='submit'>Enviar</BtnComponent>
+					<BtnComponent backgroundColor='var(--primary-color)' type='submit'>
+						Enviar
+					</BtnComponent>
 				</Form>
 			</div>
 		</ContainerModal>

@@ -13,14 +13,17 @@ export interface AuthProviderProps {
 }
 
 export interface IAuthContext {
-	onSubmitFunction: (data: RootObject) => Promise<void>;
+	onSubmitFunction: (data: ILogin) => Promise<void>;
 	toastError(): void;
 	toastSuccess(): void;
 	logout: (e: React.SyntheticEvent) => void;
 	user: RootObject | undefined;
 	loading: boolean;
 }
-
+interface ILogin {
+	email: string;
+	password: string;
+}
 export const AuthContext = createContext({} as IAuthContext);
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
@@ -55,7 +58,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		navigate('/');
 	};
 
-	const onSubmitFunction = async (data: RootObject) => {
+	const onSubmitFunction = async (data: ILogin) => {
 		try {
 			const response = await apiGateway.post('/sessions', data);
 

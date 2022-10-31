@@ -7,9 +7,24 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import apiGateway from '../../services/apiGateway';
-import Form from '../../styles/Form/Form.ts';
+import Form from '../../styles/Form/Form';
 import { BtnComponent } from '../../components/Button/style';
 import { RegisterContainer } from './styled';
+import { RootObject } from '../../interfaces/IData';
+import { ReactNode } from 'react';
+
+interface IRegister {
+	onSubmitFunction: (data: RootObject) => Promise<void>;
+}
+interface IRegisterForm {
+	email: string;
+	password: string;
+	name: string;
+	bio: string;
+	contact: string;
+	course_module: string;
+	confirmPassword: string;
+}
 
 const schema = yup.object({
 	email: yup.string().email('Deve ser um e-mail válido').required('Campo obrigatório'),
@@ -44,11 +59,11 @@ const Register = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<IRegisterForm>({
 		resolver: yupResolver(schema),
 	});
 
-	const onSubmitFunction = async (data) => {
+	const onSubmitFunction = async (data: IRegisterForm) => {
 		try {
 			const response = await apiGateway.post('/users', data);
 			toastSuccess(),
@@ -73,30 +88,30 @@ const Register = () => {
 					<h2>Crie sua conta</h2>
 					<span>Rapido e grátis, vamos nessa</span>
 					<label htmlFor='name'>Nome</label>
-					<input name='name' type='text' placeholder='Nome' {...register('name')} />
+					<input type='text' placeholder='Nome' {...register('name')} />
 					<p>{errors.name?.message}</p>
 
 					<label htmlFor='email'>Email</label>
-					<input name='email' type='email' placeholder='E-mail' {...register('email')} />
+					<input type='email' placeholder='E-mail' {...register('email')} />
 					<p>{errors.email?.message}</p>
 
 					<label htmlFor='password'>Senha</label>
-					<input name='password' type='password' placeholder='Senha' {...register('password')} />
+					<input type='password' placeholder='Senha' {...register('password')} />
 					<p>{errors.password?.message}</p>
 
 					<label htmlFor='confirmPassword'>Confirmação de senha </label>
-					<input name='confirmPassword' type='password' placeholder='Confirmação de senha' {...register('confirmPassword')} />
+					<input type='password' placeholder='Confirmação de senha' {...register('confirmPassword')} />
 					<p>{errors.confirmPassword?.message}</p>
 
 					<label htmlFor='bio'>Bio</label>
-					<input name='bio' type='text' placeholder='Bio' {...register('bio')} />
+					<input type='text' placeholder='Bio' {...register('bio')} />
 					<p>{errors.bio?.message}</p>
 
 					<label htmlFor='contact'>Contato</label>
-					<input name='contact' type='text' placeholder='Contato' {...register('contact')} />
+					<input type='text' placeholder='Contato' {...register('contact')} />
 					<p>{errors.contact?.message}</p>
 
-					<select name='' {...register('course_module')} id=''>
+					<select {...register('course_module')} id=''>
 						<option value='Primeiro módulo (Introdução ao Frontend)'>Primeiro módulo (Introdução ao Frontend)</option>
 						<option value='Segundo módulo (Frontend Avançado)'>Segundo módulo (Frontend Avançado)</option>
 						<option value='Terceiro módulo (Introdução ao Backend)'>Terceiro módulo (Introdução ao Backend)</option>
@@ -104,7 +119,7 @@ const Register = () => {
 					</select>
 					<p> {errors.course_module?.message} </p>
 
-					<BtnComponent className='btn-large' type='submit'>
+					<BtnComponent backgroundColor='var(--primary-color)' className='btn-large' type='submit'>
 						Enviar
 					</BtnComponent>
 				</Form>
