@@ -14,7 +14,7 @@ const Dashboard = () => {
 	const { modal, showModal, techs, deleteTech, refreshList } = useContext(TechContext);
 
 	if (loading || refreshList) {
-		return <p>Carregando...</p>;
+		return <p>Carregand...</p>;
 	}
 
 	return (
