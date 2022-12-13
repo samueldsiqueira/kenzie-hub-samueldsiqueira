@@ -13,7 +13,7 @@ export const BtnComponent = styled.button<iButtonProps>`
 	transition: filter 0.2s;
 	border-radius: 5px;
 
-	background-color: ${(props) => props.backgroundColor || 'var(--primary-color)'};
+	background-color: black;
 
 	&:hover {
 		filter: brightness(0.9);
